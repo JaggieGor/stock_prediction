@@ -155,10 +155,11 @@ def get_stock_data(ts_code="", save=True, start_code="", save_path="", datediff=
             for code in stock_list:
                 try:
                     df = ak.stock_zh_a_hist(symbol=code, period="daily", end_date=enddate, adjust=args.adjust)
-                    df.insert(0, "ts_code", code)
+                    # print(df)
+                    # df.insert(0, "ts_code", code)
                     df.columns = [
-                            "ts_code",
                             "trade_date",
+                            "ts_code",
                             "open",
                             "close",
                             "high",
@@ -187,6 +188,7 @@ def get_stock_data(ts_code="", save=True, start_code="", save_path="", datediff=
                             "exchange_rate"
                         ])
                 except Exception as e:
+                    print("have exception!")
                     if save:
                         tqdm.write(f"{code} {e}")
                         pbar.update(1)
@@ -197,11 +199,13 @@ def get_stock_data(ts_code="", save=True, start_code="", save_path="", datediff=
                 time.sleep(0.1)
 
                 if save:
+                    print("saved!")
                     df.to_csv(save_path+f"/{code}.csv", index=False)
                     pbar.update(1)
 
                 else:
                     if not df.empty:
+                        print("put into other place!")
                         stock_data_queue.put(df)
                         return df
                     else:

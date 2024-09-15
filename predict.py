@@ -73,7 +73,7 @@ def train(epoch, dataloader, scaler, ts_code="", data_queue=None):
                 loss_list.append(loss.item())
                 lo_list.append(loss.item())
 
-            subbar.set_description(f"{ts_code}, e:{epoch}, bn:{batch_none}, loss:{loss.item():.2e}")
+            subbar.set_description(f"device:{device.type}, {ts_code}, e:{epoch}, bn:{batch_none}, loss:{loss.item():.2e}")
             subbar.update(1)
             safe_save = True
         except Exception as e:
