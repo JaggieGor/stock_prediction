@@ -92,7 +92,7 @@ def check_exist(address):
 root_path="."
 train_path=root_path+"/stock_handle/stock_train.csv"
 test_path=root_path+"/stock_handle/stock_test.csv"
-train_pkl_path="/mnt/data/train.pkl"
+train_pkl_path=root_path+"/pkl_handle/train.pkl"
 png_path=root_path+"/png"
 daily_path=root_path+"/stock_daily"
 handle_path=root_path+"/stock_handle"
