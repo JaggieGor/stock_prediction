@@ -416,6 +416,10 @@ def contrast_lines(test_codes):
             return
     else:
         with open(train_pkl_path, 'rb') as f:
+            if os.path.exists(train_pkl_path):
+                print("train 文件存在")
+            else:
+                print("train 文件不存在")
             data_queue = dill.load(f)
         while data_queue.empty() == False:
             try:
