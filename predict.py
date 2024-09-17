@@ -417,9 +417,20 @@ def contrast_lines(test_codes):
     else:
         with open(train_pkl_path, 'rb') as f:
             if os.path.exists(train_pkl_path):
-                print("train 文件存在")
-            else:
-                print("train 文件不存在")
+                print(f" '{train_pkl_path}' 文件存在")
+            else: 
+                print(f" '{train_pkl_path}' 文件不存在")
+            folder_path = '/mnt/data'
+            try:
+                entries = os.listdir(folder_path)
+                for entry in entries:
+                    print(entry)
+            except FileNotFoundError:
+                print(f"目录 '{folder_path}' 不存在")
+            except NotADirectoryError:
+                print(f"路径 '{folder_path}' 不是一个目录")
+            except PermissionError:
+                print(f"没有权限访问 '{folder_path}'")    
             data_queue = dill.load(f)
         while data_queue.empty() == False:
             try:
